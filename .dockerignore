@@ -1,0 +1,7 @@
+﻿node_modules
+npm-debug.log
+.git
+.idea
+backend/node_modules
+frontend/node_modules
+backend/.env
