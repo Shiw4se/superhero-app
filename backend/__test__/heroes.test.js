@@ -11,7 +11,7 @@ jest.setTimeout(30000);
 
 beforeAll(async () => {
 
-    let mongoUrl = process.env.MONGO_URI;
+    let mongoUrl = process.env.MONGO_URL;
 
 
     if (!mongoUrl) {

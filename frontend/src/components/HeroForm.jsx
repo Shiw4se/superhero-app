@@ -16,11 +16,12 @@ const HeroForm = ({ onClose, initialData }) => {
 
     useEffect(() => {
         if (initialData) {
-            setNickname(initialData.nickname);
-            setRealName(initialData.real_name);
-            setOrigin(initialData.origin_description);
-            setSuperpowers(initialData.superpowers);
-            setCatchPhrase(initialData.catch_phrase);
+
+            setNickname(initialData.nickname || '');
+            setRealName(initialData.real_name || '');
+            setOrigin(initialData.origin_description || '');
+            setSuperpowers(initialData.superpowers || '');
+            setCatchPhrase(initialData.catch_phrase || '');
             setUploadedImages(initialData.images || []);
         } else {
             setNickname('');
@@ -91,8 +92,8 @@ const HeroForm = ({ onClose, initialData }) => {
             text: "You won't be able to revert this!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#d33', // Красный для удаления
-            cancelButtonColor: '#3085d6', // Синий для отмены
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
             confirmButtonText: 'Yes, delete it!'
         }).then(async (result) => {
 
