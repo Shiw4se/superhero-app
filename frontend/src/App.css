@@ -1,0 +1,221 @@
+﻿/* frontend/src/App.css */
+
+/* --- Шапка --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background: #ffffff; /* Ярко-белый фон шапки */
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    margin: 0;
+    font-size: 1.8rem;
+    background: linear-gradient(to right, #4f46e5, #9333ea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800; /* Жирнее */
+}
+
+/* --- Кнопки --- */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+/* Яркая кнопка добавления */
+.btn-primary {
+    background-color: #4f46e5;
+    color: white;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.4); /* Светящаяся тень */
+}
+.btn-primary:hover {
+    background-color: #4338ca;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background-color: #ef4444;
+    color: white;
+}
+.btn-danger:hover { background-color: #dc2626; }
+
+.btn-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #6b7280;
+    z-index: 10;
+    line-height: 1;
+}
+.btn-close:hover { color: #000; }
+
+/* --- Сетка Героев --- */
+.hero-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.hero-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: 1px solid #e5e7eb;
+}
+
+.hero-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.card-img-wrapper {
+    height: 250px;
+    overflow: hidden;
+    background-color: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s;
+}
+.hero-card:hover .card-img { transform: scale(1.05); }
+
+.card-title {
+    padding: 15px;
+    margin: 0;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #1f2937;
+    font-weight: 700;
+}
+
+/* --- МОДАЛЬНОЕ ОКНО (ИСПРАВЛЕНИЕ) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+
+    /* 1. Сильное затемнение фона */
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px); /* Размытие фона сайта */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal-content {
+    /* 2. Ярко-белый фон самого окна */
+    background-color: #ffffff;
+    color: #1f2937; /* Темный текст */
+
+    padding: 30px;
+    border-radius: 16px;
+    width: 900px;
+    max-width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); /* Глубокая тень */
+    display: flex;
+    gap: 30px;
+    position: relative;
+}
+
+/* --- Форма внутри модалки --- */
+.form-column { flex: 1; }
+.gallery-column { flex: 1; border-left: 1px solid #e5e7eb; padding-left: 30px; }
+
+.form-group { margin-bottom: 15px; }
+
+.form-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #374151;
+}
+
+.form-input, .form-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e5e7eb; /* Четкая рамка */
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f9fafb;
+    color: #111827; /* Черный текст ввода */
+    box-sizing: border-box;
+}
+
+.form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-color: #4f46e5;
+    background: #fff;
+}
+.form-textarea { min-height: 100px; resize: vertical; }
+
+/* Галерея */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.gallery-item {
+    position: relative; aspect-ratio: 1 / 1;
+    border-radius: 8px; overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+.gallery-item.main-photo { border: 3px solid #f59e0b; }
+.gallery-img { width: 100%; height: 100%; object-fit: cover; }
+
+.star-btn {
+    position: absolute; top: 5px; left: 5px;
+    background: rgba(0,0,0,0.6); color: white;
+    border: none; border-radius: 50%; width: 32px; height: 32px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.star-btn:hover { background: #f59e0b; color: black; }
+
+.delete-img-btn {
+    position: absolute; top: 5px; right: 5px;
+    background: rgba(220, 38, 38, 0.9); color: white;
+    border: none; border-radius: 50%; width: 24px; height: 24px;
+    cursor: pointer;
+}
+
+.upload-box {
+    background: #f3f4f6;
+    border: 2px dashed #9ca3af;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: border-color 0.2s;
+}
+.upload-box:hover { border-color: #4f46e5; background: #eef2ff; }
+
+@media (max-width: 768px) {
+    .modal-content { flex-direction: column; }
+    .gallery-column { border-left: none; border-top: 1px solid #e5e7eb; padding-left: 0; padding-top: 20px; }
+    .header { flex-direction: column; gap: 15px; text-align: center; }
+}

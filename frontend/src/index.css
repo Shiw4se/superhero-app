@@ -1,0 +1,37 @@
+﻿/* frontend/src/index.css */
+:root {
+    --primary: #4f46e5;       /* Индиго */
+    --primary-hover: #4338ca;
+    --danger: #ef4444;        /* Красный */
+    --danger-hover: #dc2626;
+    --success: #22c55e;       /* Зеленый */
+    --bg-color: #f3f4f6;      /* Светло-серый фон */
+    --card-bg: #ffffff;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --radius: 12px;           /* Скругление углов */
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Красивый скроллбар */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}

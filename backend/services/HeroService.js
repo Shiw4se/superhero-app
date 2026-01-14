@@ -1,46 +1,48 @@
 ﻿const Hero = require('../model/Hero');
 
 class HeroService {
-
-    async create(data, images) {
-        const hero = new Hero({ ...data, images });
-        return await hero.save();
+    async create(hero, images) {
+        const createdHero = await Hero.create({ ...hero, images });
+        return createdHero;
     }
 
-
-    async getAll(page, limit) {
-        const skip = (page - 1) * limit;
-        const total = await Hero.countDocuments();
-        const heroes = await Hero.find().skip(skip).limit(limit);
+    async getAll(page = 1, limit = 5) {
+        const offset = (page - 1) * limit;
+        const heroes = await Hero.find().skip(offset).limit(limit);
+        const count = await Hero.countDocuments();
 
         return {
             data: heroes,
-            currentPage: page,
-            totalPages: Math.ceil(total / limit),
-            totalHeroes: total
+            meta: {
+                total: count,
+                page,
+                limit
+            }
         };
     }
 
-
     async getOne(id) {
+        if (!id) throw new Error('ID не указан');
         return await Hero.findById(id);
     }
 
+    // --- ВОТ ЗДЕСЬ БЫЛА ПРОБЛЕМА ---
+    async update(id, heroData, images) {
+        if (!id) throw new Error('ID не указан');
 
-    async update(id, data, newImages) {
-        let updateData = { ...data };
-
-
-        if (newImages && newImages.length > 0) {
-            const oldHero = await Hero.findById(id);
-            updateData.images = [...(oldHero.images || []), ...newImages];
+        // Мы явно добавляем массив картинок в объект данных.
+        // Mongoose при обновлении сделает ПОЛНУЮ ЗАМЕНУ массива images,
+        // а не будет добавлять новые к старым.
+        if (images) {
+            heroData.images = images;
         }
 
-        return await Hero.findByIdAndUpdate(id, updateData, { new: true });
+        const updatedHero = await Hero.findByIdAndUpdate(id, heroData, { new: true });
+        return updatedHero;
     }
 
-    // Удаление
     async delete(id) {
+        if (!id) throw new Error('ID не указан');
         return await Hero.findByIdAndDelete(id);
     }
 }
